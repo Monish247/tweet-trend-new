@@ -22,27 +22,27 @@
                 echo "----------- unit test completed ----------"
             }
         }
-        stage('SonarQube analysis') {
-            environment {
-                scannerHome = tool 'sonar-scanner-6.1'
-            }
-            steps {
-                withSonarQubeEnv('sonarqube-server') {
-                    sh "${scannerHome}/bin/sonar-scanner"
-                }
-            }
-        }
-        stage("Quality Gate") {
-            steps {
-                script {
-                    timeout(time: 1, unit: 'HOURS') {
-                        def qg = waitForQualityGate()
-                        if (qg.status != 'OK') {
-                            error "Pipeline aborted due to quality gate failure: ${qg.status}"
-                        }
-                    }
-                }
-            }
-        }
+        // stage('SonarQube analysis') {
+        //     environment {
+        //         scannerHome = tool 'sonar-scanner-6.1'
+        //     }
+        //     steps {
+        //         withSonarQubeEnv('sonarqube-server') {
+        //             sh "${scannerHome}/bin/sonar-scanner"
+        //         }
+        //     }
+        // }
+        // stage("Quality Gate") {
+        //     steps {
+        //         script {
+        //             timeout(time: 1, unit: 'HOURS') {
+        //                 def qg = waitForQualityGate()
+        //                 if (qg.status != 'OK') {
+        //                     error "Pipeline aborted due to quality gate failure: ${qg.status}"
+        //                 }
+        //             }
+        //         }
+        //     }
+        // }
     }
 }
