@@ -27,7 +27,7 @@
                 scannerHome = tool 'sonar-scanner'
             }
             steps {
-                withSonarQubeEnv('sonarqube-server') {
+                withSonarQubeEnv('sonar-scanner-6.1') {
                     sh "${scannerHome}/bin/sonar-scanner"
                 }
             }
